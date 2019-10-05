@@ -20,9 +20,10 @@ crsr.execute("CREATE TABLE PLAYER (player_id INT PRIMARY KEY, player_name TEXT,\
 crsr.execute("CREATE TABLE PLAYER_MATCH (playermatch_key BIGINT PRIMARY KEY,\
             match_id INT, player_id INT,\
             batting_hand TEXT, bowling_skill TEXT, role_desc TEXT, team_id INT,\
-            FOREIGN KEY (match_id) REFERENCES MATCH(match_id),\
             FOREIGN KEY (player_id) REFERENCES PLAYER(player_id),\
             FOREIGN KEY (team_id) REFERENCES TEAM(team_id))")
+
+            # FOREIGN KEY (match_id) REFERENCES MATCH(match_id),\
 
 crsr.execute("CREATE TABLE BALL_BY_BALL (match_id INT,innings_no INT, over_id INT,\
             ball_id INT, striker_batting_position INT, runs_scored INT, extra_runs INT,\
@@ -32,5 +33,6 @@ crsr.execute("CREATE TABLE BALL_BY_BALL (match_id INT,innings_no INT, over_id IN
             FOREIGN KEY (non_striker) REFERENCES PLAYER(player_id),\
             FOREIGN KEY (bowler) REFERENCES PLAYER(player_id))")
 
+            #FOREIGN KEY (match_id) REFERENCES MATCH(match_id),\
 conn.commit()
 conn.close()

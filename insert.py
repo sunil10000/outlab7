@@ -22,11 +22,11 @@ c.executemany("""INSERT INTO MATCH (match_id, season_year, team1, team2, battedf
 
 with open('player.csv', 'r') as f:
     dr = csv.DictReader(f)
-    to_db = [(i['playermatch_key'], i['match_id'], i['player_id'], i['batting_hand'],
-              i['bowling_skill'], i['role_desc'], i['team_id']) for i in dr]
+    to_db = [(i['player_id'], i['player_name'], i['dob'], i['batting_hand'],
+              i['bowling_skill'], i['country_name']) for i in dr]
 
-c.executemany("""INSERT INTO PLAYER (playermatch_key, match_id, player_id, batting_hand, 
-            bowling_skill, role_desc, team_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?);""", to_db)
+c.executemany("""INSERT INTO PLAYER (player_id, player_name, dob, batting_hand, 
+            bowling_skill, country_name) VALUES (?, ?, ?, ?, ?, ?);""", to_db)
 
 with open('player_match.csv', 'r') as f:
     dr = csv.DictReader(f)
@@ -42,7 +42,7 @@ with open('ball_by_ball.csv', 'r') as f:
               i['runs_scored'], i['extra_runs'], i['out_type'], i['striker'], i['non_striker'], i['bowler'],)
              for i in dr]
 
-c.executemany("""INSERT INTO PLAYER_MATCH (match_id, innings_no, over_id, ball_id, striker_batting_position, runs_scored
+c.executemany("""INSERT INTO BALL_BY_BALL (match_id,innings_no, over_id, ball_id, striker_batting_position, runs_scored,
                 extra_runs, out_type, striker, non_striker, bowler) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);""", to_db)
 
 db.commit()
