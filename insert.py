@@ -42,8 +42,8 @@ with open('ball_by_ball.csv', 'r') as f:
               i['runs_scored'], i['extra_runs'], i['out_type'], i['striker'], i['non_striker'], i['bowler'],)
              for i in dr]
 
-c.executemany("""INSERT INTO BALL_BY_BALL (match_id,innings_no, over_id, ball_id, striker_batting_position, runs_scored,
-                extra_runs, out_type, striker, non_striker, bowler) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);""", to_db)
+c.executemany("""INSERT INTO BALL_BY_BALL (match_id, innings_no, over_id, ball_id, striker_batting_position, runs_scored, extra_runs,\
+    out_type, striker, non_striker, bowler) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);""", to_db)
 
 db.commit()
 db.close()
